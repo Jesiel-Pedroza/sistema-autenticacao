@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <h2>Login</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="flash {{ category }}">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <label>{{ form.email.label }}</label>
+    {{ form.email() }}
+    
+    <label>{{ form.senha.label }}</label>
+    {{ form.senha() }}
+    
+    {{ form.submit() }}
+  </form>
+
+  <p>Não tem conta? <a href="{{ url_for('register') }}">Cadastre-se</a></p>
+</body>
+</html>
